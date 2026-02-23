@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia de Marketing: Feria Abrileña Tuxpan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- 
+        Palette Selected: "Feria Vibrante" (Custom Vibrant Palette based on energetic/playful tones)
+        Colors:
+        - Primary (Deep Violet): #4C1D95
+        - Secondary (Bright Pink): #DB2777
+        - Accent (Amber): #F59E0B
+        - Highlight (Teal): #0D9488
+        - Background: #F3F4F6
+    -->
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        feria: {
+                            purple: '#4C1D95',
+                            pink: '#DB2777',
+                            amber: '#F59E0B',
+                            teal: '#0D9488',
+                            bg: '#F3F4F6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Chart Container Styling Rules */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Max width constraint */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Base height */
+            max-height: 400px;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        .plotly-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #DB2777; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4C1D95; 
+        }
+    </style>
+    
+    <!-- 
+        NARRATIVE PLAN:
+        1. Introduction: Hook the viewer with the event identity and value proposition.
+        2. Audience: Geographic breakdown (Polar Area Chart).
+        3. Channels: Budget allocation (Doughnut Chart).
+        4. Timeline: Phased approach (CSS Flow).
+        5. Finance: Value vs Cost (Bar Chart).
+        6. KPIs: Projected impact (Plotly Indicators).
+        
+        VISUALIZATION CHOICES:
+        - Audience -> Polar Area (Compares multiple geographic segments effectively).
+        - Channels -> Doughnut (Standard part-to-whole comparison).
+        - Timeline -> CSS Process (Best for sequential text/steps without SVG).
+        - Finance -> Bar Chart (Clear comparison of cost categories).
+        - KPIs -> Plotly Indicators (Best for displaying "Single Big Numbers" with gauges).
+        
+        NO SVG USED. NO MERMAID USED.
+    -->
+</head>
+<body class="bg-feria-bg text-gray-800 font-sans antialiased">
+
+    <!-- Navigation / Hero -->
+    <header class="bg-gradient-to-r from-feria-purple to-feria-pink text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center md:text-left">
+                <h1 class="font-display font-extrabold text-3xl md:text-4xl tracking-tight">🎡 FERIA ABRILEÑA TUXPAN</h1>
+                <p class="text-feria-amber font-semibold mt-1">Estrategia Integral de Marketing 2026</p>
+            </div>
+            <div class="mt-4 md:mt-0 text-3xl opacity-90">
+                🎫 🐂 🎶
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 space-y-12">
+
+        <!-- SECTION 1: PROPUESTA DE VALOR -->
+        <section>
+            <div class="mb-6">
+                <h2 class="font-display text-2xl font-bold text-feria-purple border-b-4 border-feria-amber inline-block pb-2">Propuesta de Valor</h2>
+                <p class="mt-4 text-gray-600 leading-relaxed max-w-3xl">
+                    La Feria Abrileña no es solo un evento; es el corazón de la tradición en el norte de Nayarit. Nuestra estrategia se centra en resaltar la experiencia única del Palenque, la seguridad familiar y la calidad artística para asegurar un lleno total.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-feria-pink transform hover:-translate-y-1 transition duration-300">
+                    <div class="text-4xl mb-4 text-center">🎤</div>
+                    <h3 class="text-xl font-bold text-gray-800 text-center mb-2">Cartelera de Lujo</h3>
+                    <p class="text-sm text-gray-600 text-center">Artistas de primer nivel en el Palenque, generando alta demanda regional.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-feria-purple transform hover:-translate-y-1 transition duration-300">
+                    <div class="text-4xl mb-4 text-center">🐂</div>
+                    <h3 class="text-xl font-bold text-gray-800 text-center mb-2">Tradición Ganadera</h3>
+                    <p class="text-sm text-gray-600 text-center">Expo Ganadera que conecta con las raíces y el comercio local.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 border-t-4 border-feria-teal transform hover:-translate-y-1 transition duration-300">
+                    <div class="text-4xl mb-4 text-center">🛡️</div>
+                    <h3 class="text-xl font-bold text-gray-800 text-center mb-2">Ambiente Seguro</h3>
+                    <p class="text-sm text-gray-600 text-center">El mejor entretenimiento del norte de Nayarit en un entorno familiar.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: SEGMENTACIÓN & ALCANCE -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+            <!-- Narrative -->
+            <div>
+                <h2 class="font-display text-2xl font-bold text-feria-purple border-b-4 border-feria-amber inline-block pb-2 mb-4">Segmentación Geográfica</h2>
+                <p class="text-gray-600 mb-4">
+                    Para optimizar el presupuesto, hemos dividido el impacto publicitario en anillos de influencia. No disparamos al aire; apuntamos donde está la audiencia real.
+                </p>
+                <ul class="space-y-4 mt-6">
+                    <li class="flex items-start">
+                        <span class="bg-feria-pink text-white rounded-full h-8 w-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">1</span>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Núcleo Local (Tuxpan)</h4>
+                            <p class="text-sm text-gray-600">Cobertura del 100%. Enfoque en orgullo local y asistencia masiva.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-feria-purple text-white rounded-full h-8 w-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">2</span>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Anillo Regional (40km)</h4>
+                            <p class="text-sm text-gray-600">Santiago Ixcuintla, Ruiz, Tecuala. Público cautivo de fin de semana.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-feria-teal text-white rounded-full h-8 w-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">3</span>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Capital (Tepic)</h4>
+                            <p class="text-sm text-gray-600">Segmentación por intereses específicos en artistas del Palenque.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Visualization: Polar Area Chart -->
+            <div class="bg-white rounded-xl shadow-lg p-4">
+                <div class="chart-container">
+                    <canvas id="segmentationChart"></canvas>
+                </div>
+                <p class="text-center text-xs text-gray-500 mt-2 font-mono">Prioridad de Impacto por Zona Geográfica</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: CANALES DIGITALES -->
+        <section class="bg-white rounded-2xl shadow-xl p-8 border-l-8 border-feria-teal">
+            <h2 class="font-display text-2xl font-bold text-feria-purple mb-6">Ecosistema Digital & Canales</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="chart-container h-80">
+                    <canvas id="channelsChart"></canvas>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Dominio de Meta Ads</h3>
+                    <p class="text-gray-600 mb-4">
+                        El 85% del presupuesto se destina a **Facebook e Instagram**. En Nayarit, estas plataformas concentran la mayor atención del público objetivo para eventos de entretenimiento.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <span class="text-2xl mr-3">🔍</span>
+                            <div>
+                                <strong class="text-feria-teal">Google Search (10%)</strong>
+                                <p class="text-xs text-gray-500">Captura de demanda activa: "Boletos Palenque Tuxpan".</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <span class="text-2xl mr-3">💬</span>
+                            <div>
+                                <strong class="text-feria-amber">WhatsApp & Otros (5%)</strong>
+                                <p class="text-xs text-gray-500">Cierre de ventas VIP y atención directa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: FASES DE CAMPAÑA (TIMELINE) -->
+        <section>
+            <h2 class="font-display text-2xl font-bold text-feria-purple mb-8 text-center">Cronograma de Ejecución</h2>
+            
+            <!-- CSS Process Flow (No SVG) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                
+                <!-- Phase 1 -->
+                <div class="relative bg-white p-6 rounded-lg shadow-md border-t-8 border-feria-purple">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-feria-purple text-white px-4 py-1 rounded-full text-sm font-bold shadow-sm">FASE 1</div>
+                    <h3 class="text-lg font-bold text-center mt-2 mb-2">RECONOCIMIENTO</h3>
+                    <p class="text-xs text-center text-gray-400 font-bold mb-4 uppercase tracking-widest">HYPE & LANZAMIENTO</p>
+                    <div class="bg-purple-50 p-3 rounded text-sm text-gray-700">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Lanzamiento Cartel Oficial</li>
+                            <li>Videos de invitación</li>
+                            <li>Obj: Compartidos y Comentarios</li>
+                        </ul>
+                    </div>
+                    <!-- Connector for Desktop -->
+                    <div class="hidden md:block absolute top-1/2 -right-6 text-feria-purple text-2xl z-10">➤</div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="relative bg-white p-6 rounded-lg shadow-md border-t-8 border-feria-pink">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-feria-pink text-white px-4 py-1 rounded-full text-sm font-bold shadow-sm">FASE 2</div>
+                    <h3 class="text-lg font-bold text-center mt-2 mb-2">CONSIDERACIÓN</h3>
+                    <p class="text-xs text-center text-gray-400 font-bold mb-4 uppercase tracking-widest">VENTA DE BOLETOS</p>
+                    <div class="bg-pink-50 p-3 rounded text-sm text-gray-700">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Anuncios con Precios</li>
+                            <li>Ubicación Puntos de Venta</li>
+                            <li>Obj: Clics y Visitas</li>
+                        </ul>
+                    </div>
+                    <!-- Connector for Desktop -->
+                    <div class="hidden md:block absolute top-1/2 -right-6 text-feria-pink text-2xl z-10">➤</div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="relative bg-white p-6 rounded-lg shadow-md border-t-8 border-feria-amber">
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-feria-amber text-white px-4 py-1 rounded-full text-sm font-bold shadow-sm">FASE 3</div>
+                    <h3 class="text-lg font-bold text-center mt-2 mb-2">URGENCIA</h3>
+                    <p class="text-xs text-center text-gray-400 font-bold mb-4 uppercase tracking-widest">CIERRE DE VENTA</p>
+                    <div class="bg-yellow-50 p-3 rounded text-sm text-gray-700">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>"Últimos lugares"</li>
+                            <li>"Mañana inicia"</li>
+                            <li>Obj: Venta Compulsiva</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 5: ESTRUCTURA FINANCIERA -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="font-display text-2xl font-bold text-feria-purple mb-4">Desglose Financiero</h2>
+                <p class="text-gray-600 text-sm mb-4">
+                    Transparencia total en la inversión. Separamos claramente el presupuesto de publicidad (pagado a plataformas) de los honorarios de gestión, aplicando un descuento especial por ser un proyecto familiar.
+                </p>
+                <div class="chart-container">
+                    <canvas id="financeChart"></canvas>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-center space-y-4">
+                <!-- Summary Card -->
+                <div class="bg-feria-purple text-white p-6 rounded-xl shadow-lg">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm uppercase tracking-wider opacity-80">Valor Total Mercado</span>
+                        <span class="font-bold text-lg line-through opacity-60">$22,500 MXN</span>
+                    </div>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-xs opacity-80">Costo Final Cliente</p>
+                            <h3 class="text-4xl font-extrabold">$16,500</h3>
+                        </div>
+                        <div class="text-right">
+                            <span class="bg-feria-amber text-feria-purple px-2 py-1 rounded text-xs font-bold">AHORRAS $6,000</span>
+                        </div>
+                    </div>
+                    <p class="text-xs mt-4 opacity-70 italic">* Incluye Inversión Publicitaria ($12.5k) + Honorarios ($4k)</p>
+                </div>
+
+                <!-- Detail Points -->
+                <div class="bg-white p-4 rounded-xl shadow border border-gray-200">
+                    <h4 class="font-bold text-feria-teal mb-2">Tu Inversión Incluye:</h4>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>✅ Configuración de Píxeles y API de Conversiones.</li>
+                        <li>✅ Segmentación Geofencing avanzada.</li>
+                        <li>✅ Optimización diaria de presupuesto.</li>
+                        <li>✅ Reportes de resultados.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: KPIs & PROJECTIONS -->
+        <section class="bg-gray-800 text-white rounded-2xl shadow-2xl p-8 mb-12">
+            <h2 class="font-display text-2xl font-bold text-feria-amber mb-2 text-center">Proyección de Impacto (KPIs)</h2>
+            <p class="text-gray-400 text-center mb-8 max-w-2xl mx-auto">
+                Estimaciones basadas en una inversión de $12,500 MXN en la región norte de Nayarit.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Plotly Gauge 1: Impressions -->
+                <div class="h-64 bg-gray-900 rounded-xl overflow-hidden relative">
+                    <div id="kpiImpressions" class="plotly-container"></div>
+                </div>
+                <!-- Plotly Gauge 2: Reach -->
+                <div class="h-64 bg-gray-900 rounded-xl overflow-hidden relative">
+                    <div id="kpiReach" class="plotly-container"></div>
+                </div>
+            </div>
+            
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 text-center divide-y md:divide-y-0 md:divide-x divide-gray-700">
+                <div class="p-4">
+                    <div class="text-3xl font-bold text-feria-pink mb-1">> 3%</div>
+                    <div class="text-xs uppercase tracking-widest text-gray-400">Tasa de Interacción</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-3xl font-bold text-feria-teal mb-1">CPC &lt; $2.50</div>
+                    <div class="text-xs uppercase tracking-widest text-gray-400">Costo por Clic Est.</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-3xl font-bold text-feria-amber mb-1">High</div>
+                    <div class="text-xs uppercase tracking-widest text-gray-400">ROAS Palenque</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <p>© 2026 Feria Abrileña Tuxpan Marketing Strategy.</p>
+        <p class="mt-2">Generado por tu Agente y Asesor de Marketing.</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- UTILITIES ---
+
+        // Label Wrapping Helper
+        const splitLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length <= maxLength) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+
+        // Chart.js Default Config for Tooltips
+        const commonOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        font: { family: 'Roboto', size: 12 },
+                        usePointStyle: true,
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(17, 24, 39, 0.9)',
+                    titleFont: { family: 'Montserrat', size: 14 },
+                    bodyFont: { family: 'Roboto', size: 12 },
+                    padding: 12,
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // --- CHART INITIALIZATION ---
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Segmentation Chart (Polar Area)
+            const ctxSeg = document.getElementById('segmentationChart').getContext('2d');
+            const segLabels = ['Tuxpan (Local)', 'Santiago Ixcuintla', 'Ruiz & Tecuala', 'Tepic (Capital)'];
+            new Chart(ctxSeg, {
+                type: 'polarArea',
+                data: {
+                    labels: segLabels.map(l => splitLabel(l, 16)),
+                    datasets: [{
+                        label: 'Prioridad de Inversión (1-10)',
+                        data: [10, 8, 6, 4], // Priority scores
+                        backgroundColor: [
+                            'rgba(219, 39, 119, 0.7)', // Pink
+                            'rgba(76, 29, 149, 0.7)',  // Purple
+                            'rgba(13, 148, 136, 0.7)', // Teal
+                            'rgba(245, 158, 11, 0.7)'  // Amber
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        r: {
+                            grid: { color: '#e5e7eb' },
+                            ticks: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 2. Channels Chart (Doughnut)
+            const ctxChan = document.getElementById('channelsChart').getContext('2d');
+            new Chart(ctxChan, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Meta Ads (FB/IG)', 'Google Search', 'WhatsApp/Otros'],
+                    datasets: [{
+                        data: [85, 10, 5],
+                        backgroundColor: [
+                            '#4C1D95', // Purple
+                            '#0D9488', // Teal
+                            '#F59E0B'  // Amber
+                        ],
+                        hoverOffset: 10,
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    cutout: '70%',
+                    plugins: {
+                        ...commonOptions.plugins,
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // 3. Finance Chart (Bar - Comparative)
+            const ctxFin = document.getElementById('financeChart').getContext('2d');
+            new Chart(ctxFin, {
+                type: 'bar',
+                data: {
+                    labels: ['Costo Mercado', 'Tu Inversión Real'],
+                    datasets: [
+                        {
+                            label: 'Ad Spend (Publicidad)',
+                            data: [12500, 12500],
+                            backgroundColor: '#0D9488', // Teal
+                            stack: 'Stack 0',
+                        },
+                        {
+                            label: 'Honorarios Gestión',
+                            data: [10000, 4000],
+                            backgroundColor: '#4C1D95', // Purple
+                            stack: 'Stack 0',
+                        },
+                        {
+                            label: 'Descuento Aplicado',
+                            data: [0, 0], // Hidden visually in stack but conceptually important
+                            backgroundColor: '#DB2777', 
+                            stack: 'Stack 0',
+                        }
+                    ]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f3f4f6' },
+                            ticks: {
+                                callback: function(value) { return '$' + value; }
+                            }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // 4. Plotly Indicators (KPIs)
+            
+            // Config for Plotly to force Canvas rendering where possible
+            const plotlyConfig = { responsive: true, displayModeBar: false };
+            
+            // Indicator 1: Impressions
+            const dataImp = [
+                {
+                    type: "indicator",
+                    mode: "number+gauge",
+                    value: 450000,
+                    number: { suffix: "+", font: { color: "#F3F4F6", family: "Montserrat" } },
+                    title: { text: "Impresiones Totales", font: { size: 16, color: "#9CA3AF" } },
+                    gauge: {
+                        axis: { range: [0, 500000], tickwidth: 1, tickcolor: "#4B5563" },
+                        bar: { color: "#DB2777" }, // Pink
+                        bgcolor: "#1F2937",
+                        borderwidth: 2,
+                        bordercolor: "#374151",
+                    }
+                }
+            ];
+            
+            // Indicator 2: Reach
+            const dataReach = [
+                {
+                    type: "indicator",
+                    mode: "number+gauge",
+                    value: 150000,
+                    number: { font: { color: "#F3F4F6", family: "Montserrat" } },
+                    title: { text: "Alcance Único (Personas)", font: { size: 16, color: "#9CA3AF" } },
+                    gauge: {
+                        axis: { range: [0, 200000], tickwidth: 1, tickcolor: "#4B5563" },
+                        bar: { color: "#0D9488" }, // Teal
+                        bgcolor: "#1F2937",
+                        borderwidth: 2,
+                        bordercolor: "#374151",
+                    }
+                }
+            ];
+
+            const layoutGauge = {
+                width: null, // Let container dictate
+                height: 250,
+                margin: { t: 40, b: 20, l: 30, r: 30 },
+                paper_bgcolor: "rgba(0,0,0,0)",
+                font: { color: "white", family: "Roboto" }
+            };
+
+            Plotly.newPlot('kpiImpressions', dataImp, layoutGauge, plotlyConfig);
+            Plotly.newPlot('kpiReach', dataReach, layoutGauge, plotlyConfig);
+
+        });
+    </script>
+</body>
+</html>
